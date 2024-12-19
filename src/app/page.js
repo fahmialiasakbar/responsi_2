@@ -63,7 +63,7 @@ export default function Animes() {
           </form>
           <div className="w-full xl:w-2/3">
             {animes.map((anime, key) => (
-              <AnimeCard key={anime.key} anime={anime}/>
+              <AnimeCard anime={anime}/>
             ))}
           </div>
           <div className="w-full xl:w-2/3">

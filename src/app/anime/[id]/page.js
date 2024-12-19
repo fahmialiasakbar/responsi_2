@@ -37,7 +37,7 @@ export default function Anime() {
         <div key={anime.mal_id} className="container mx-auto p-6 max-w-4xl bg-white shadow-lg rounded-lg">
             <div className="trailer">
                 <iframe
-                    className="w-full h-80 rounded-lg"
+                    className="w-full h-[200px] md:h-[350px] lg:h-[550px] rounded-lg"
                     src={anime.trailer.embed_url} 
                     title="YouTube video player"
                     frameBorder="0"
@@ -56,8 +56,8 @@ export default function Anime() {
                 </p>
             </div>
             
-            <Link href="/">
-                <button className="border px-4 py-2 shadow rounded-md bg-indigo-600 text-white">
+            <Link href="/" className="flex justify-center">
+                <button className="border px-4 py-2 mt-6 shadow rounded-md bg-indigo-600 text-white">
                     Kembali
                 </button>
             </Link>

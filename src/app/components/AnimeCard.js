@@ -20,13 +20,13 @@ const AnimeCard = ({ anime }) => {
           </div>
         </div>
         <div className="p-4 flex flex-col justify-center w-1/6">
-            <dd class="text-amber-500 flex items-center text-xl text-center">
-              <svg width="24" height="24" fill="none" aria-hidden="true" class="mr-1 stroke-current">
-                <path d="m12 5 2 5h5l-4 4 2.103 5L12 16l-5.103 3L9 14l-4-4h5l2-5Z"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <dd className="flex-col justify-center text-amber-500 flex items-center text-xl text-center">
+              <svg width="24" height="24" fill="none" aria-hidden="true" className="mr-1 stroke-current">
+                <path d="m12 5 2 5h5l-4 4 2.103 5L12 16l-5.103 3L9 14l-4-4h5l2-5Z"  strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <span>{anime.score}</span>
+              <span className="font-semibold">{anime.score}</span>
             </dd>
-            <Link href={`/anime/${anime.mal_id}`}>
+            <Link href={`/anime/${anime.mal_id}`} className='mt-4'>
               <button
                 className="border w-full px-4 py-2 shadow bg-indigo-600 text-white rounded-md">
                 See Detail
