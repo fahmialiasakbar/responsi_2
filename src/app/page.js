@@ -6,23 +6,27 @@ import {
 } from "react";
 import AnimeCard from "./components/AnimeCard";
 
-export default function Posts() {
+export default function Animes() {
     const [animes, setAnimes] = useState(null);
     const [query, setQuery] = useState("");
+    const [page, setPage] = useState(1);
+    const [totalPage, setTotalPage] = useState(1);
     const base = `https://api.jikan.moe/v4/anime?min_score=8&start_date=2023-01-30&order_by=score&sort=desc`;
     useEffect(() => {
-        async function fetchPosts() {
-            let url = `${base}&page=1&limit=10`;
-            let res = await fetch(url);
+        async function fetchAnimes() {
+            const url = `${base}&page=${page}&limit=10`;
+            const res = await fetch(url);
             const response = await res.json();
+            const totalPage = Math.ceil(response.pagination.items.total / response.pagination.items.per_page);
             setAnimes(response.data);
+            setTotalPage(totalPage);
+            window.scrollTo(0, 300);
         }
-        fetchPosts();
-    }, []);
+        fetchAnimes();
+    }, [page]);
     const handleSearch = async (e) => {
         e.preventDefault();
-        let url = `${base}&page=1&limit=10&q=${query}`;
-
+        const url = `${base}&page=1&limit=10&q=${query}`;
         const res = await fetch(url);
         const response = await res.json();
         setAnimes(response.data);
@@ -61,6 +65,21 @@ export default function Posts() {
             {animes.map((anime, key) => (
               <AnimeCard key={anime.key} anime={anime}/>
             ))}
+          </div>
+          <div className="w-full xl:w-2/3">
+            <div className="flex flex-row gap-1 justify-center">
+              {Array.from({ length: totalPage }, (_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setPage(i + 1)}
+                  className={`border px-4 py-2 shadow bg-indigo-600 text-white rounded-md ${
+                    page === i + 1 ? "bg-indigo-800" : ""
+                  }`}
+                >
+                  {i + 1}
+                </button>
+              ))}
+            </div>
           </div>
         </main>
       </div>
